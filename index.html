@@ -156,6 +156,29 @@ cursor:pointer;
     font-size:13px;
 }
 
+    .scroll-indicator{
+    text-align:center;
+    font-size:24px;
+    color:#4f46e5;
+    margin-top:12px;
+    animation:pulseDown 1.5s infinite;
+}
+
+@keyframes pulseDown{
+    0%{
+        transform:translateY(0);
+        opacity:0.5;
+    }
+    50%{
+        transform:translateY(8px);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(0);
+        opacity:0.5;
+    }
+}
+
 
 button{
 width:100%;
@@ -199,8 +222,14 @@ UC: Psicologia, raça, gênero e sexualidade.
 </div>
     <br><br>
     <a href="#quiz" class="scroll-btn">Iniciar Reflexão</a>
+
+     <div class="scroll-indicator">
+    ↓
+</div>
     
 </div>
+
+
   
 </section>
 
@@ -244,8 +273,8 @@ UC: Psicologia, raça, gênero e sexualidade.
             <th colspan="2" style="padding:10px; background:#e2e8f0; color:black; border:1px solid #64748b;">
                
                 <p style="text-align:center;">
-            O resultado obtido será com base na tabela. <br>
-            Ao final, você receberá o resultado com base na contagem da pontuação de cada resposta.
+            O resultado será obtido de acordo com esta tabela. <br>
+            Ao final, você receberá o resultado com base na contagem da pontuação das respostas mencionadas.
                 </p>
                 
             </th>
