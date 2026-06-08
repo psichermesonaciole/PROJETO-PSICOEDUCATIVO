@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Violência Contra a Mulher - Projeto Psicoeducativo A3</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+background:#f5f7fb;
+overflow-x:hidden;
+color:#1e293b;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:60px 20px;
+background:
+linear-gradient(rgba(9,16,32,.65),rgba(9,16,32,.75)),
+url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+}
+
+.hero-box{
+max-width:900px;
+text-align:center;
+color:white;
+}
+
+.badge{
+display:inline-block;
+padding:10px 22px;
+border-radius:50px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:68px;
+font-weight:800;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+max-width:700px;
+margin:auto;
+line-height:1.8;
+}
+
+.scroll-btn{
+margin-top:35px;
+display:inline-block;
+padding:16px 35px;
+border-radius:50px;
+background:white;
+color:#4f46e5;
+font-weight:700;
+text-decoration:none;
+}
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:80px 20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:24px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#4f46e5;
+}
+
+.info-banner{
+background:linear-gradient(135deg,#4f46e5,#7c3aed);
+padding:60px;
+border-radius:30px;
+color:white;
+text-align:center;
+}
+
+.quiz{
+max-width:950px;
+margin:auto;
+padding:80px 20px;
+}
+
+.quiz-title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.quiz-title h2{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.pergunta{
+background:white;
+padding:30px;
+border-radius:25px;
+margin-bottom:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.opcoes{
+display:grid;
+gap:12px;
+margin-top:20px;
+}
+
+.opcoes label{
+padding:15px;
+border-radius:15px;
+background:#f8fafc;
+cursor:pointer;
+}
+
+button{
+width:100%;
+padding:22px;
+border:none;
+border-radius:20px;
+background:linear-gradient(135deg,#4f46e5,#7c3aed);
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+}
+
+#resultado{
+margin-top:30px;
+padding:30px;
+background:white;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+@media(max-width:768px){
+.hero h1{font-size:42px}
+.quiz-title h2{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="hero-box">
+<div class="badge">Projeto Psicoeducativo (A3) dos alunos do curso de Bacharelado em Psicologia (Unp) • UC: Psicologia, raça, gênero e sexualidade.</div>
+<h1>Respeito, Empatia e Proteção às Mulheres</h1>
+<p>A violência contra a mulher não começa apenas com agressões físicas. Ela pode surgir através de controle, humilhações, ameaças, discriminação e comportamentos naturalizados pela sociedade.</p>
+<a href="#quiz" class="scroll-btn">Iniciar Reflexão</a>
+</div>
+</section>
+
+<section class="section">
+<div class="info-banner">
+<h2>Uma sociedade mais segura começa pela conscientização.</h2>
+</div>
+
+<div class="cards">
+<div class="card">
+<h3>⚖ Direitos</h3>
+<p>Conhecer os direitos das mulheres fortalece a prevenção e o enfrentamento da violência.</p>
+</div>
+
+<div class="card">
+<h3>🤝 Empatia</h3>
+<p>Ouvir, acolher e respeitar são atitudes fundamentais para transformar realidades.</p>
+</div>
+
+<div class="card">
+<h3>📚 Educação</h3>
+<p>A informação é uma das ferramentas mais importantes para combater preconceitos.</p>
+</div>
+
+<div class="card">
+<h3>📢 Denúncia</h3>
+<p>Disque 180 e procure apoio institucional quando houver situações de violência.</p>
+</div>
+</div>
+</section>
+
+<section id="quiz" class="quiz">
+<div class="quiz-title">
+<h2>Questionário de Reflexão</h2>
+<p>Responda com sinceridade.</p>
+</div>
+
+<form id="quizForm">
+<div id="perguntas"></div>
+<button type="button" onclick="calcularResultado()">Consultar Resultado</button>
+</form>
+
+<div id="resultado"></div>
+</section>
+
+<script>
+const perguntas=[
+"1. Quando uma mulher me contradiz, eu sinto necessidade de colocar ela no lugar.",
+"2. Eu julgo mulheres pela roupa, maquiagem ou comportamento.",
+"3. Acho que homens naturalmente lideram melhor que mulheres.",
+"4. Quando uma mulher fala sobre machismo, penso que ela pode estar exagerando.",
+"5. Me incomoda quando uma mulher é muito dominante ou independente.",
+"6. Mulheres deveriam dar mais satisfação sobre onde vão ou com quem estão.",
+"7. Existem atitudes aceitáveis em homens, mas inadequadas em mulheres.",
+"8. Já achei normal piadas ofensivas contra mulheres.",
+"9. Tenho dificuldade em aceitar rejeição vinda de mulheres.",
+"10. Sinto necessidade de controlar atitudes ou comportamentos de mulheres próximas."
+];
+
+const alternativas=[
+{texto:"Nunca",valor:0},
+{texto:"Raramente",valor:1},
+{texto:"Às vezes",valor:2},
+{texto:"Frequentemente",valor:3},
+{texto:"Quase sempre",valor:4}
+];
+
+const perguntasDiv=document.getElementById("perguntas");
+
+perguntas.forEach((pergunta,index)=>{
+const bloco=document.createElement("div");
+bloco.classList.add("pergunta");
+let html=`<h3>${pergunta}</h3><div class="opcoes">`;
+alternativas.forEach(a=>{
+html+=`<label><input type="radio" name="pergunta${index}" value="${a.valor}"> ${a.texto}</label>`;
+});
+html+='</div>';
+bloco.innerHTML=html;
+perguntasDiv.appendChild(bloco);
+});
+
+function calcularResultado(){
+let total = 0;
+
+  for(let i = 0; i < perguntas.length; i++){
+
+    const resposta = document.querySelector(`input[name="pergunta${i}"]:checked`);
+
+    if(!resposta){
+      alert("Por favor, responda todas as perguntas.");
+      return;
+    }
+
+    total += parseInt(resposta.value);
+  }
+
+  const resultado = document.getElementById("resultado");
+
+  resultado.style.display = "block";
+
+  if(total >= 0 && total <= 10){
+
+    resultado.className = "verde";
+
+    resultado.innerHTML = `
+      🟢 <br><br>
+      <strong>Vibração saudável</strong><br><br>Faixa: 0 a 10 pontos<br>Nível: Baixo<br><br>Você demonstra respeito, empatia e maturidade nas suas atitudes e relações.
+      <div class="pontuacao">
+        Pontuação: ${total} pontos
+      </div>
+<hr style="margin:20px 0">
+<div style="text-align:left">
+<h3 style='margin-bottom:25px;'>Classificações do questionário</h3>
+<p>🟢 <strong>Vibração Saudável</strong><br>Faixa: 0 a 10 pontos<br>Nível: Baixo</p>
+<p>🟡 <strong>Vale prestar atenção</strong><br>Faixa: 11 a 20 pontos<br>Nível: Moderado</p>
+<p>🟠 <strong>Hora de refletir</strong><br>Faixa: 21 a 30 pontos<br>Nível: Elevado</p>
+<p>🔴 <strong>Alerta ligado</strong><br>Faixa: 31 a 40 pontos<br>Nível: Alto</p>
+</div>
+
+    `;
+
+  }
+
+  else if(total >= 11 && total <= 20){
+
+    resultado.className = "amarelo";
+
+    resultado.innerHTML = `
+      🟡 <br><br>
+      <strong>Vale prestar atenção</strong><br><br>Faixa: 11 a 20 pontos<br>Nível: Moderado<br><br>Algumas ideias ou comportamentos podem ter vindo de padrões sociais que muita gente aprende sem perceber.
+      <div class="pontuacao">
+        Pontuação: ${total} pontos
+      </div>
+<hr style="margin:20px 0">
+<div style="text-align:left">
+<h3 style='margin-bottom:25px;'>Classificações do questionário</h3>
+<p>🟢 <strong>Vibração Saudável</strong><br>Faixa: 0 a 10 pontos<br>Nível: Baixo</p>
+<p>🟡 <strong>Vale prestar atenção</strong><br>Faixa: 11 a 20 pontos<br>Nível: Moderado</p>
+<p>🟠 <strong>Hora de refletir</strong><br>Faixa: 21 a 30 pontos<br>Nível: Elevado</p>
+<p>🔴 <strong>Alerta ligado</strong><br>Faixa: 31 a 40 pontos<br>Nível: Alto</p>
+</div>
+
+    `;
+
+  }
+
+  else if(total >= 21 && total <= 30){
+
+    resultado.className = "laranja";
+
+    resultado.innerHTML = `
+      🟠 <br><br>
+      <strong>Hora de refletir</strong><br><br>Faixa: 21 a 30 pontos<br>Nível: Elevado<br><br>Suas respostas mostram atitudes que podem acabar machucando ou desrespeitando mulheres no dia a dia, mesmo sem intenção.
+      <div class="pontuacao">
+        Pontuação: ${total} pontos
+      </div>
+<hr style="margin:20px 0">
+<div style="text-align:left">
+<h3 style='margin-bottom:25px;'>Classificações do questionário</h3>
+<p>🟢 <strong>Vibração Saudável</strong><br>Faixa: 0 a 10 pontos<br>Nível: Baixo</p>
+<p>🟡 <strong>Vale prestar atenção</strong><br>Faixa: 11 a 20 pontos<br>Nível: Moderado</p>
+<p>🟠 <strong>Hora de refletir</strong><br>Faixa: 21 a 30 pontos<br>Nível: Elevado</p>
+<p>🔴 <strong>Alerta ligado</strong><br>Faixa: 31 a 40 pontos<br>Nível: Alto</p>
+</div>
+
+    `;
+
+  }
+
+  else{
+
+    resultado.className = "vermelho";
+
+    resultado.innerHTML = `
+      🔴 <br><br>
+      <strong>Alerta ligado</strong><br><br>Faixa: 31 a 40 pontos<br>Nível: Alto<br><br>Alguns pensamentos e comportamentos marcados podem prejudicar relações e reforçar desrespeitos. Sempre dá tempo de evoluir e rever atitudes.
+      <div class="pontuacao">
+        Pontuação: ${total} pontos
+      </div>
+<hr style="margin:20px 0">
+<div style="text-align:left">
+<h3 style='margin-bottom:25px;'>Classificações do Questionário:</h3>
+<p>🟢 <strong>Vibração saudável:</strong><br>Faixa: 0 a 10 pontos<br>Nível: Baixo</p>
+<p>🟡 <strong>Vale prestar atenção:</strong><br>Faixa: 11 a 20 pontos<br>Nível: Moderado</p>
+<p>🟠 <strong>Hora de refletir:</strong><br>Faixa: 21 a 30 pontos<br>Nível: Elevado</p>
+<p>🔴 <strong>Alerta ligado:</strong><br>Faixa: 31 a 40 pontos<br>Nível: Alto</p>
+</div>
+
+    `;
+  }
+
+  resultado.scrollIntoView({ behavior: "smooth" });
+
+}
+
+</script>
+
+</body>
+</html>
